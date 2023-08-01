@@ -49,7 +49,7 @@ class AwesomeCameraLayout extends StatelessWidget {
           topActions,
           Expanded(child: middleContent),
           Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: Container(
               color: theme.bottomActionsBackgroundColor,
               child: bottomActions,
