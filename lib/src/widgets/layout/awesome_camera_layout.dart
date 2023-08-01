@@ -37,8 +37,7 @@ class AwesomeCameraLayout extends StatelessWidget {
               ],
             )),
         topActions = topActions ?? AwesomeTopActions(state: state),
-        bottomActions = bottomActions ??
-            AwesomeBottomActions(state: state, onMediaTap: onMediaTap);
+        bottomActions = bottomActions ?? AwesomeBottomActions(state: state, onMediaTap: onMediaTap);
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +48,11 @@ class AwesomeCameraLayout extends StatelessWidget {
         children: [
           topActions,
           Expanded(child: middleContent),
-          Container(
-            color: theme.bottomActionsBackgroundColor,
-            child: SafeArea(
-              top: false,
-              child: Column(
-                children: [
-                  bottomActions,
-                ],
-              ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: Container(
+              color: theme.bottomActionsBackgroundColor,
+              child: bottomActions,
             ),
           ),
         ],
