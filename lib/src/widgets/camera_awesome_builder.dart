@@ -73,6 +73,8 @@ class CameraAwesomeBuilder extends StatefulWidget {
 
   final OnImageForAnalysis? onImageForAnalysis;
 
+  final OnPermissionsResult? onPermissionsResult;
+
   /// only for Android
   final AnalysisConfig? imageAnalysisConfig;
 
@@ -112,6 +114,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
     required this.previewFit,
     required this.filter,
     this.onImageForAnalysis,
+    this.onPermissionsResult,
     this.imageAnalysisConfig,
     this.onPreviewTapBuilder,
     this.onPreviewScaleBuilder,
@@ -152,6 +155,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
     Function(MediaCapture)? onMediaTap,
     AwesomeFilter? filter,
     OnImageForAnalysis? onImageForAnalysis,
+    OnPermissionsResult? onPermissionsResult,
     AnalysisConfig? imageAnalysisConfig,
     OnPreviewTap Function(CameraState)? onPreviewTapBuilder,
     OnPreviewScale Function(CameraState)? onPreviewScaleBuilder,
@@ -184,6 +188,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
           saveConfig: saveConfig,
           onMediaTap: onMediaTap,
           onImageForAnalysis: onImageForAnalysis,
+          onPermissionsResult: onPermissionsResult,
           imageAnalysisConfig: imageAnalysisConfig,
           onPreviewTapBuilder: onPreviewTapBuilder,
           onPreviewScaleBuilder: onPreviewScaleBuilder,
@@ -207,6 +212,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
     required SaveConfig saveConfig,
     AwesomeFilter? filter,
     OnImageForAnalysis? onImageForAnalysis,
+    OnPermissionsResult? onPermissionsResult,
     AnalysisConfig? imageAnalysisConfig,
     OnPreviewTap Function(CameraState)? onPreviewTapBuilder,
     OnPreviewScale Function(CameraState)? onPreviewScaleBuilder,
@@ -227,6 +233,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
           onMediaTap: null,
           filter: filter,
           onImageForAnalysis: onImageForAnalysis,
+          onPermissionsResult: onPermissionsResult,
           imageAnalysisConfig: imageAnalysisConfig,
           onPreviewTapBuilder: onPreviewTapBuilder,
           onPreviewScaleBuilder: onPreviewScaleBuilder,
@@ -246,6 +253,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
     required CameraLayoutBuilder builder,
     AwesomeFilter? filter,
     OnImageForAnalysis? onImageForAnalysis,
+    OnPermissionsResult? onPermissionsResult,
     AnalysisConfig? imageAnalysisConfig,
     OnPreviewTap Function(CameraState)? onPreviewTapBuilder,
     OnPreviewScale Function(CameraState)? onPreviewScaleBuilder,
@@ -263,6 +271,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
           onMediaTap: null,
           filter: filter,
           onImageForAnalysis: onImageForAnalysis,
+          onPermissionsResult: onPermissionsResult,
           imageAnalysisConfig: imageAnalysisConfig,
           onPreviewTapBuilder: onPreviewTapBuilder,
           onPreviewScaleBuilder: onPreviewScaleBuilder,
@@ -287,6 +296,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
     Widget? progressIndicator,
     required CameraLayoutBuilder builder,
     required OnImageForAnalysis onImageForAnalysis,
+    OnPermissionsResult? onPermissionsResult,
     AnalysisConfig? imageAnalysisConfig,
   }) : this._(
           sensorConfig: sensorConfig ??
@@ -298,6 +308,7 @@ class CameraAwesomeBuilder extends StatefulWidget {
           onMediaTap: null,
           filter: null,
           onImageForAnalysis: onImageForAnalysis,
+          onPermissionsResult: onPermissionsResult,
           imageAnalysisConfig: imageAnalysisConfig,
           onPreviewTapBuilder: null,
           onPreviewScaleBuilder: null,
@@ -369,6 +380,7 @@ class _CameraWidgetBuilder extends State<CameraAwesomeBuilder>
               : CaptureMode.analysis_only),
       saveConfig: widget.saveConfig,
       onImageForAnalysis: widget.onImageForAnalysis,
+      onPermissionsResult: widget.onPermissionsResult,
       analysisConfig: widget.imageAnalysisConfig,
       exifPreferences: widget.saveConfig?.exifPreferences ??
           ExifPreferences(saveGPSLocation: false),
