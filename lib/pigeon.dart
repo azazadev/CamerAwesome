@@ -734,7 +734,40 @@ class CameraInterface {
       bool arg_enableImageStream,
       ExifPreferences arg_exifPreferences,
       VideoOptions? arg_videoOptions) async {
-      return true;
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.CameraInterface.setupCamera', codec,
+        binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList = await channel.send(<Object?>[
+      arg_sensors,
+      arg_aspectRatio,
+      arg_zoom,
+      arg_mirrorFrontCamera,
+      arg_enablePhysicalButton,
+      arg_flashMode,
+      arg_captureMode,
+      arg_enableImageStream,
+      arg_exifPreferences,
+      arg_videoOptions
+    ]) as List<Object?>?;
+    if (replyList == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+      );
+    } else if (replyList.length > 1) {
+      throw PlatformException(
+        code: replyList[0]! as String,
+        message: replyList[1] as String?,
+        details: replyList[2],
+      );
+    } else if (replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (replyList[0] as bool?)!;
+    }
   }
 
   Future<List<String?>> checkPermissions(List<String?> arg_permissions) async {
